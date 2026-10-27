@@ -1,0 +1,25 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Streamlit config / cache
+.streamlit/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local databases & artifacts (keep schemas, ignore temporary sqlite writes if preferred)
+*.sqlite3-journal
+
+# Operating system artifacts
+.DS_Store
+Thumbs.db
