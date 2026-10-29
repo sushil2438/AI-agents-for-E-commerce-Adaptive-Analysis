@@ -63,71 +63,588 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for polished, clean, professional styling
+# ---------------------------------------------------------
+# Premium Cream + Burgundy Design System (CSS Tokens)
+# ---------------------------------------------------------
 st.markdown("""
 <style>
-    .main-header {
-        font-size: 2.2rem;
-        font-weight: 700;
-        color: #1E3A8A;
-        margin-bottom: 0.2rem;
+    /* ---------------------------------------------------------
+       Cream + Burgundy Design Tokens (:root)
+       --------------------------------------------------------- */
+    :root {
+        --color-background: #FAF4EB;
+        --color-background-secondary: #F0E5D8;
+        --color-card: #FFFCF7;
+        --color-primary: #873B46;
+        --color-primary-hover: #642B35;
+        --color-text: #332426;
+        --color-text-secondary: #78666A;
+        --color-border: #E7D8CE;
+        --color-accent: #C58B91;
+        --color-highlight: #F4E2E3;
+
+        /* Compatibility Aliases */
+        --bg-main: var(--color-background);
+        --bg-secondary: var(--color-background-secondary);
+        --bg-card: var(--color-card);
+        --primary-burgundy: var(--color-primary);
+        --dark-burgundy-hover: var(--color-primary-hover);
+        --main-text: var(--color-text);
+        --secondary-text: var(--color-text-secondary);
+        --border-color: var(--color-border);
+        --soft-accent: var(--color-accent);
+        --light-burgundy-highlight: var(--color-highlight);
     }
+
+    /* ---------------------------------------------------------
+       Global Base Canvas & Typography
+       --------------------------------------------------------- */
+    html, body, .stApp {
+        background: linear-gradient(180deg, #FAF4EB 0%, #F5EDE2 50%, #FAF4EB 100%) !important;
+        background-color: var(--color-background) !important;
+        color: var(--color-text) !important;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--color-text) !important;
+        letter-spacing: -0.02em;
+    }
+
+    p, span, label {
+        color: inherit;
+    }
+
+    /* ---------------------------------------------------------
+       Headers & Titles
+       --------------------------------------------------------- */
+    .main-header {
+        font-size: 2.3rem;
+        font-weight: 800;
+        color: var(--color-primary) !important;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.2rem;
+        line-height: 1.2;
+    }
+
     .sub-header {
         font-size: 1.05rem;
-        color: #4B5563;
-        margin-bottom: 1rem;
+        color: var(--color-text-secondary) !important;
+        margin-bottom: 1.25rem;
+        font-weight: 400;
     }
+
+    /* Academic Credit Box */
     .credit-box {
-        background-color: #F3F4F6;
-        border-left: 4px solid #3B82F6;
-        padding: 0.75rem 1rem;
-        border-radius: 4px;
-        margin-bottom: 1.2rem;
+        background-color: var(--color-card);
+        border: 1px solid var(--color-border);
+        border-left: 4px solid var(--color-primary);
+        padding: 0.85rem 1.15rem;
+        border-radius: 6px;
+        margin-bottom: 1.25rem;
         font-size: 0.9rem;
+        color: var(--color-text);
+        box-shadow: 0 2px 8px rgba(135, 59, 70, 0.04);
     }
+
+    /* ---------------------------------------------------------
+       Sidebar Styling (No Black, No Cyan)
+       --------------------------------------------------------- */
+    section[data-testid="stSidebar"] {
+        background-color: var(--color-background-secondary) !important;
+        border-right: 1px solid var(--color-border) !important;
+        color: var(--color-text) !important;
+    }
+    section[data-testid="stSidebar"] h1,
+    section[data-testid="stSidebar"] h2, 
+    section[data-testid="stSidebar"] h3 {
+        color: var(--color-primary) !important;
+        letter-spacing: -0.01em;
+    }
+    section[data-testid="stSidebar"] p,
+    section[data-testid="stSidebar"] span,
+    section[data-testid="stSidebar"] label {
+        color: var(--color-text) !important;
+    }
+    section[data-testid="stSidebar"] .stMarkdown {
+        color: var(--color-text) !important;
+    }
+
+    /* ---------------------------------------------------------
+       Metric Cards & Built-in Metrics
+       --------------------------------------------------------- */
     .metric-card {
-        background: #FFFFFF;
-        border: 1px solid #E5E7EB;
-        border-radius: 8px;
-        padding: 1rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        background: var(--color-card);
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        padding: 1.15rem 1rem;
+        box-shadow: 0 4px 16px rgba(135, 59, 70, 0.05), 0 1px 3px rgba(135, 59, 70, 0.03);
         text-align: center;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .metric-card:hover {
+        border-color: var(--color-accent);
+        box-shadow: 0 6px 20px rgba(135, 59, 70, 0.08);
+        transform: translateY(-2px);
     }
     .metric-title {
-        font-size: 0.85rem;
-        color: #6B7280;
-        font-weight: 600;
+        font-size: 0.78rem;
+        color: var(--color-text-secondary);
+        font-weight: 700;
         text-transform: uppercase;
-        margin-bottom: 0.3rem;
+        letter-spacing: 0.07em;
+        margin-bottom: 0.35rem;
     }
     .metric-value {
-        font-size: 1.7rem;
-        font-weight: 700;
-        color: #111827;
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--color-text);
+        line-height: 1.15;
     }
+
+    div[data-testid="stMetric"] {
+        background-color: var(--color-card) !important;
+        border: 1px solid var(--color-border) !important;
+        border-radius: 8px !important;
+        padding: 0.85rem 1rem !important;
+        box-shadow: 0 2px 6px rgba(135, 59, 70, 0.03) !important;
+        transition: transform 0.2s ease, border-color 0.2s ease !important;
+    }
+    div[data-testid="stMetric"]:hover {
+        border-color: var(--color-accent) !important;
+        transform: translateY(-1px) !important;
+    }
+    div[data-testid="stMetricLabel"] {
+        color: var(--color-text-secondary) !important;
+        font-weight: 600 !important;
+        font-size: 0.82rem !important;
+        letter-spacing: 0.03em !important;
+    }
+    div[data-testid="stMetricValue"] {
+        color: var(--color-text) !important;
+        font-weight: 800 !important;
+    }
+
+    /* ---------------------------------------------------------
+       Badges & Risk Indicators
+       --------------------------------------------------------- */
     .badge-high {
-        background-color: #FEE2E2;
-        color: #991B1B;
-        padding: 0.25rem 0.6rem;
+        background-color: var(--color-highlight);
+        color: var(--color-primary);
+        border: 1px solid var(--color-accent);
+        padding: 0.25rem 0.65rem;
         border-radius: 9999px;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 0.8rem;
+        display: inline-block;
     }
     .badge-medium {
-        background-color: #FEF3C7;
-        color: #92400E;
-        padding: 0.25rem 0.6rem;
+        background-color: #FDF3E8;
+        color: #8C5310;
+        border: 1px solid #E5D5C0;
+        padding: 0.25rem 0.65rem;
         border-radius: 9999px;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 0.8rem;
+        display: inline-block;
     }
     .badge-low {
-        background-color: #D1FAE5;
-        color: #065F46;
-        padding: 0.25rem 0.6rem;
+        background-color: #EAF5EE;
+        color: #276749;
+        border: 1px solid #C2E2CC;
+        padding: 0.25rem 0.65rem;
         border-radius: 9999px;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 0.8rem;
+        display: inline-block;
+    }
+
+    /* ---------------------------------------------------------
+       Navigation Tabs
+       --------------------------------------------------------- */
+    button[data-baseweb="tab"] {
+        color: var(--color-text-secondary) !important;
+        font-weight: 600 !important;
+        background-color: transparent !important;
+        border-radius: 6px 6px 0 0 !important;
+        padding: 0.55rem 1.1rem !important;
+        transition: all 0.2s ease !important;
+    }
+    button[data-baseweb="tab"]:hover {
+        color: var(--color-primary-hover) !important;
+        background-color: rgba(135, 59, 70, 0.05) !important;
+    }
+    button[data-baseweb="tab"][aria-selected="true"] {
+        color: var(--color-primary) !important;
+        border-bottom: 2px solid var(--color-primary) !important;
+        background-color: rgba(135, 59, 70, 0.08) !important;
+    }
+    div[data-baseweb="tab-highlight"] {
+        background-color: var(--color-primary) !important;
+    }
+
+    /* ---------------------------------------------------------
+       Buttons & Call-to-Actions (Accessible Light Text on Burgundy)
+       --------------------------------------------------------- */
+    .stButton > button {
+        background: linear-gradient(135deg, var(--color-primary) 0%, #994350 100%) !important;
+        color: var(--color-card) !important;
+        border: 1px solid var(--color-primary) !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+        padding: 0.5rem 1.15rem !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 2px 6px rgba(135, 59, 70, 0.15) !important;
+    }
+    .stButton > button:hover {
+        background: var(--color-primary-hover) !important;
+        border-color: var(--color-primary-hover) !important;
+        color: var(--color-card) !important;
+        box-shadow: 0 4px 14px rgba(100, 43, 53, 0.28) !important;
+        transform: translateY(-1px) !important;
+    }
+    .stButton > button:active {
+        background: #4D1F27 !important;
+        transform: translateY(0) !important;
+    }
+
+    .stDownloadButton > button {
+        background-color: var(--color-card) !important;
+        color: var(--color-primary) !important;
+        border: 1px solid var(--color-primary) !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+        transition: all 0.2s ease !important;
+    }
+    .stDownloadButton > button:hover {
+        background-color: var(--color-primary) !important;
+        color: var(--color-card) !important;
+        box-shadow: 0 4px 12px rgba(135, 59, 70, 0.2) !important;
+    }
+
+    button:disabled, input:disabled, select:disabled {
+        background-color: var(--color-border) !important;
+        color: var(--color-text-secondary) !important;
+        border-color: var(--color-border) !important;
+        cursor: not-allowed !important;
+        opacity: 0.65 !important;
+    }
+
+    /* ---------------------------------------------------------
+       Form Controls, Inputs & Steppers (No Harsh White, No Cyan)
+       --------------------------------------------------------- */
+    div[data-baseweb="select"] > div, 
+    div[data-baseweb="input"] > div {
+        background-color: var(--color-card) !important;
+        border: 1px solid var(--color-border) !important;
+        color: var(--color-text) !important;
+        border-radius: 8px !important;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+    }
+    div[data-baseweb="select"]:hover > div, 
+    div[data-baseweb="input"]:hover > div {
+        border-color: var(--color-accent) !important;
+    }
+    div[data-baseweb="select"]:focus-within > div, 
+    div[data-baseweb="input"]:focus-within > div {
+        border-color: var(--color-primary) !important;
+        box-shadow: 0 0 0 2px rgba(135, 59, 70, 0.18) !important;
+    }
+    input, select, textarea {
+        color: var(--color-text) !important;
+        background-color: var(--color-card) !important;
+    }
+    input::placeholder, textarea::placeholder {
+        color: var(--color-text-secondary) !important;
+        opacity: 0.7 !important;
+    }
+
+    /* Number input stepper buttons */
+    button[data-testid="stNumberInputStepDown"],
+    button[data-testid="stNumberInputStepUp"] {
+        background-color: var(--color-card) !important;
+        color: var(--color-primary) !important;
+        border-color: var(--color-border) !important;
+    }
+    button[data-testid="stNumberInputStepDown"]:hover,
+    button[data-testid="stNumberInputStepUp"]:hover {
+        background-color: var(--color-highlight) !important;
+        color: var(--color-primary-hover) !important;
+    }
+    button[data-testid="stNumberInputStepDown"] svg,
+    button[data-testid="stNumberInputStepUp"] svg {
+        fill: var(--color-primary) !important;
+    }
+
+    /* ---------------------------------------------------------
+       Dropdown Menus & Popovers (Portal Fix: Eliminates Black & Cyan)
+       --------------------------------------------------------- */
+    div[data-baseweb="popover"],
+    div[data-baseweb="menu"],
+    ul[role="listbox"] {
+        background-color: var(--color-card) !important;
+        border: 1px solid var(--color-border) !important;
+        border-radius: 8px !important;
+        box-shadow: 0 6px 20px rgba(135, 59, 70, 0.08) !important;
+    }
+    li[role="option"] {
+        background-color: var(--color-card) !important;
+        color: var(--color-text) !important;
+        font-weight: 500 !important;
+        transition: background-color 0.15s ease, color 0.15s ease !important;
+    }
+    li[role="option"]:hover,
+    li[role="option"][aria-selected="true"] {
+        background-color: var(--color-highlight) !important;
+        color: var(--color-primary) !important;
+    }
+    li[role="option"] * {
+        color: inherit !important;
+    }
+
+    /* ---------------------------------------------------------
+       File Uploader
+       --------------------------------------------------------- */
+    div[data-testid="stFileUploader"] section {
+        background-color: var(--color-card) !important;
+        border: 1px dashed var(--color-border) !important;
+        border-radius: 8px !important;
+        color: var(--color-text) !important;
+    }
+    div[data-testid="stFileUploader"] section:hover {
+        border-color: var(--color-primary) !important;
+    }
+    div[data-testid="stFileUploader"] small {
+        color: var(--color-text-secondary) !important;
+    }
+
+    /* ---------------------------------------------------------
+       Radio Buttons & Checkboxes (No Cyan Accents)
+       --------------------------------------------------------- */
+    div[role="radiogroup"] label {
+        color: var(--color-text) !important;
+    }
+    div[role="radiogroup"] div[data-testid="stMarkdownContainer"] p {
+        color: var(--color-text) !important;
+    }
+    div[role="radiogroup"] div[data-checked="true"] {
+        background-color: var(--color-primary) !important;
+        border-color: var(--color-primary) !important;
+    }
+    div[role="radiogroup"] div[data-checked="false"] {
+        border-color: var(--color-border) !important;
+    }
+
+    span[data-baseweb="checkbox"] span {
+        border-color: var(--color-border) !important;
+    }
+    span[data-baseweb="checkbox"] [aria-checked="true"] {
+        background-color: var(--color-primary) !important;
+        border-color: var(--color-primary) !important;
+    }
+
+    /* ---------------------------------------------------------
+       Alerts & Notifications (High-Contrast, Harmonious)
+       --------------------------------------------------------- */
+    div[data-testid="stAlert"] {
+        border-radius: 8px !important;
+        border: 1px solid var(--color-border) !important;
+        background-color: var(--color-card) !important;
+        box-shadow: 0 2px 6px rgba(135, 59, 70, 0.03) !important;
+    }
+    div[data-testid="stAlert"] * {
+        color: inherit !important;
+    }
+    div[data-testid="stAlert"] p,
+    div[data-testid="stAlert"] span,
+    div[data-testid="stAlert"] strong,
+    div[data-testid="stAlert"] div {
+        color: inherit !important;
+    }
+    div[data-testid="stAlert"] svg {
+        fill: currentColor !important;
+    }
+
+    /* Alert semantic color grading */
+    div[data-testid="stAlert"]:has([data-testid="stAlertContentError"]) {
+        background-color: var(--color-highlight) !important;
+        border-color: var(--color-accent) !important;
+        color: var(--color-primary) !important;
+    }
+    div[data-testid="stAlert"]:has([data-testid="stAlertContentWarning"]) {
+        background-color: #FDF3E8 !important;
+        border-color: #E5D5C0 !important;
+        color: #8C5310 !important;
+    }
+    div[data-testid="stAlert"]:has([data-testid="stAlertContentSuccess"]) {
+        background-color: #EAF5EE !important;
+        border-color: #C2E2CC !important;
+        color: #276749 !important;
+    }
+    div[data-testid="stAlert"]:has([data-testid="stAlertContentInfo"]) {
+        background-color: var(--color-background) !important;
+        border-color: var(--color-border) !important;
+        color: var(--color-text) !important;
+    }
+
+    /* ---------------------------------------------------------
+       Inline Code & Preformatted Blocks (Eliminates Black Boxes)
+       --------------------------------------------------------- */
+    code {
+        background-color: var(--color-background-secondary) !important;
+        color: var(--color-primary) !important;
+        border: 1px solid var(--color-border) !important;
+        padding: 0.15rem 0.45rem !important;
+        border-radius: 4px !important;
+        font-size: 0.88em !important;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    }
+    pre {
+        background-color: var(--color-card) !important;
+        border: 1px solid var(--color-border) !important;
+        border-radius: 8px !important;
+    }
+    pre code {
+        border: none !important;
+        background-color: transparent !important;
+        color: var(--color-text) !important;
+    }
+
+    /* ---------------------------------------------------------
+       Expanders & Form Containers
+       --------------------------------------------------------- */
+    div[data-testid="stExpander"] {
+        border: 1px solid var(--color-border) !important;
+        background-color: var(--color-card) !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 6px rgba(135, 59, 70, 0.03) !important;
+    }
+    div[data-testid="stExpander"] summary {
+        color: var(--color-text) !important;
+        font-weight: 600 !important;
+        background-color: var(--color-card) !important;
+    }
+    div[data-testid="stExpander"] summary:hover {
+        color: var(--color-primary) !important;
+    }
+    div[data-testid="stExpander"] summary svg {
+        fill: var(--color-text-secondary) !important;
+    }
+    div[data-testid="stExpander"] div[data-testid="stExpanderDetails"] {
+        background-color: var(--color-card) !important;
+        color: var(--color-text) !important;
+    }
+
+    div[data-testid="stForm"] {
+        background-color: var(--color-background-secondary) !important;
+        border: 1px solid var(--color-border) !important;
+        border-radius: 8px !important;
+    }
+
+    /* ---------------------------------------------------------
+       Dataframes & HTML Tables
+       --------------------------------------------------------- */
+    div[data-testid="stDataFrame"],
+    div[data-testid="stTable"] {
+        border: 1px solid var(--color-border) !important;
+        border-radius: 8px !important;
+        background-color: var(--color-card) !important;
+    }
+    table {
+        background-color: var(--color-card) !important;
+        color: var(--color-text) !important;
+    }
+    th {
+        background-color: var(--color-background-secondary) !important;
+        color: var(--color-primary) !important;
+        border-bottom: 2px solid var(--color-border) !important;
+        font-weight: 700 !important;
+    }
+    td {
+        background-color: var(--color-card) !important;
+        color: var(--color-text) !important;
+        border-bottom: 1px solid var(--color-border) !important;
+    }
+    tr:hover td {
+        background-color: var(--color-highlight) !important;
+    }
+
+    div[data-testid="stCaptionContainer"] p,
+    .stCaption {
+        color: var(--color-text-secondary) !important;
+    }
+
+    /* ---------------------------------------------------------
+       Tooltips & Popovers
+       --------------------------------------------------------- */
+    div[data-testid="stTooltipContent"],
+    div[data-baseweb="tooltip"] {
+        background-color: var(--color-card) !important;
+        color: var(--color-text) !important;
+        border: 1px solid var(--color-border) !important;
+        border-radius: 6px !important;
+        box-shadow: 0 4px 12px rgba(135, 59, 70, 0.08) !important;
+    }
+    div[data-testid="stTooltipIcon"] svg {
+        fill: var(--color-text-secondary) !important;
+    }
+
+    /* ---------------------------------------------------------
+       Links & Focus Outlines
+       --------------------------------------------------------- */
+    a {
+        color: var(--color-primary) !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        transition: color 0.15s ease !important;
+    }
+    a:hover {
+        color: var(--color-primary-hover) !important;
+        text-decoration: underline !important;
+    }
+
+    button:focus-visible, 
+    input:focus-visible, 
+    select:focus-visible,
+    [tabindex="0"]:focus-visible {
+        outline: 2px solid var(--color-primary) !important;
+        outline-offset: 2px !important;
+    }
+
+    /* ---------------------------------------------------------
+       Clean Header & Top Accent Line
+       --------------------------------------------------------- */
+    header[data-testid="stHeader"] {
+        background-color: transparent !important;
+    }
+    header[data-testid="stHeader"] svg {
+        fill: var(--color-text) !important;
+    }
+    div[data-testid="stDecoration"] {
+        background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 50%, var(--color-primary) 100%) !important;
+        height: 3px !important;
+    }
+
+    /* ---------------------------------------------------------
+       Scrollbars & Dividers
+       --------------------------------------------------------- */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: var(--color-background);
+    }
+    ::-webkit-scrollbar-thumb {
+        background: var(--color-border);
+        border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--color-accent);
+    }
+
+    hr {
+        border-color: var(--color-border) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -172,7 +689,7 @@ else:
     raw_source = DEFAULT_CSV_PATH
 
 # Button to regenerate synthetic dataset if needed
-if st.sidebar.button("🔄 Regenerate Default Dataset"):
+if st.sidebar.button("🔄 Regenerate Default Dataset", use_container_width=True):
     raw_df = generate_sales_data(num_days=540, end_date_str="2024-06-30", random_seed=42)
     raw_df.to_csv(DEFAULT_CSV_PATH, index=False)
     st.sidebar.success("Dataset refreshed with reproducible seed (540 days, 5 products)!")
@@ -231,7 +748,7 @@ with st.sidebar.form(key=f"inventory_settings_form_{selected_product_id}"):
     s_moq = st.number_input("Minimum Order Quantity (MOQ)", min_value=1, value=int(saved_settings["moq"]), step=5)
     s_unit_cost = st.number_input("Unit Cost ($ / ₹)", min_value=0.01, value=float(saved_settings["unit_cost"]), step=1.0)
     
-    save_settings_btn = st.form_submit_button("💾 Save Settings to Database")
+    save_settings_btn = st.form_submit_button("💾 Save Settings to Database", use_container_width=True)
     if save_settings_btn:
         new_settings = {
             "product_id": selected_product_id,
@@ -391,7 +908,7 @@ for p_id, p_df in df_clean.groupby("product_id"):
 
 
 # ---------------------------------------------------------
-# Top Global Summary KPI Cards
+# Top Global Summary KPI Cards (Cream + Burgundy Grading)
 # ---------------------------------------------------------
 kpi1, kpi2, kpi3, kpi4, kpi5, kpi6 = st.columns(6)
 
@@ -399,31 +916,34 @@ with kpi1:
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-title">Catalog Valuation</div>
-        <div class="metric-value">${total_inventory_valuation:,.0f}</div>
+        <div class="metric-value" style="color: #873B46;">${total_inventory_valuation:,.0f}</div>
     </div>
     """, unsafe_allow_html=True)
 
 with kpi2:
+    reorder_color = "#873B46" if replenishment_needed_count > 0 else "#332426"
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-title">Reorder Required</div>
-        <div class="metric-value" style="color: {'#B91C1C' if replenishment_needed_count > 0 else '#111827'};">{replenishment_needed_count} / {len(catalog_records)}</div>
+        <div class="metric-value" style="color: {reorder_color};">{replenishment_needed_count} / {len(catalog_records)}</div>
     </div>
     """, unsafe_allow_html=True)
 
 with kpi3:
+    risk_color = "#873B46" if high_risk_count > 0 else "#276749"
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-title">High Risk Stock</div>
-        <div class="metric-value" style="color: {'#DC2626' if high_risk_count > 0 else '#059669'};">{high_risk_count} Items</div>
+        <div class="metric-value" style="color: {risk_color};">{high_risk_count} Items</div>
     </div>
     """, unsafe_allow_html=True)
 
 with kpi4:
+    shift_color = "#873B46" if shift_alert_count > 0 else "#276749"
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-title">Market Shifts</div>
-        <div class="metric-value" style="color: {'#D97706' if shift_alert_count > 0 else '#10B981'};">{shift_alert_count} Alerts</div>
+        <div class="metric-value" style="color: {shift_color};">{shift_alert_count} Alerts</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -431,7 +951,7 @@ with kpi5:
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-title">Selected 7d Forecast</div>
-        <div class="metric-value">{active_forecast['total_7_day_forecast']:.0f} units</div>
+        <div class="metric-value" style="color: #332426;">{active_forecast['total_7_day_forecast']:.0f} units</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -439,7 +959,7 @@ with kpi6:
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-title">Suggested Order</div>
-        <div class="metric-value" style="color: #2563EB;">{inv_rec['suggested_order_quantity']} units</div>
+        <div class="metric-value" style="color: #873B46;">{inv_rec['suggested_order_quantity']} units</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -482,7 +1002,7 @@ with tab1:
         
     st.markdown("---")
     
-    # Historical Sales + Forecast Interactive Plotly Chart
+    # Historical Sales + Forecast Interactive Plotly Chart (Cream + Burgundy Palette)
     recent_history = df_prod_daily.tail(60).copy()
     
     fig_fc = go.Figure()
@@ -493,8 +1013,8 @@ with tab1:
         y=recent_history["units_sold"],
         mode="lines+markers",
         name="Historical Actual Sales",
-        line=dict(color="#2563EB", width=2),
-        marker=dict(size=5)
+        line=dict(color="#78666A", width=2),
+        marker=dict(size=5, color="#332426")
     ))
     
     # 7-day Moving Average Baseline on history
@@ -504,17 +1024,17 @@ with tab1:
         y=ma_hist,
         mode="lines",
         name="7-Day Moving Avg Baseline",
-        line=dict(color="#9CA3AF", width=1.5, dash="dot")
+        line=dict(color="#C58B91", width=1.5, dash="dot")
     ))
     
-    # Future 7-day forecast line
+    # Future 7-day forecast line (Burgundy highlight)
     fig_fc.add_trace(go.Scatter(
         x=pd.to_datetime(active_forecast["forecast_dates"]),
         y=active_forecast["daily_forecast"],
         mode="lines+markers",
         name="7-Day ML Forecast",
-        line=dict(color="#DC2626" if is_shift else "#059669", width=3),
-        marker=dict(size=8, symbol="diamond")
+        line=dict(color="#873B46", width=3),
+        marker=dict(size=8, symbol="diamond", color="#873B46")
     ))
     
     # Cutoff vertical line
@@ -523,17 +1043,49 @@ with tab1:
         x=last_hist_date,
         line_width=1.5,
         line_dash="dash",
-        line_color="#4B5563",
+        line_color="#873B46",
         annotation_text="Forecast Horizon Cutoff",
-        annotation_position="top left"
+        annotation_position="top left",
+        annotation_font=dict(color="#873B46", size=11)
     )
     
     fig_fc.update_layout(
-        title=f"Actual Historical Demand vs 7-Day Predicted Horizon ({selected_product_name})",
-        xaxis_title="Date",
-        yaxis_title="Units Sold / Forecasted",
+        title=dict(
+            text=f"<b>Actual Historical Demand vs 7-Day Predicted Horizon ({selected_product_name})</b>",
+            font=dict(color="#332426", size=15)
+        ),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="#FFFCF7",
+        xaxis=dict(
+            title="Date",
+            title_font=dict(color="#78666A", size=12),
+            tickfont=dict(color="#78666A"),
+            gridcolor="#E7D8CE",
+            showgrid=True,
+            zeroline=False
+        ),
+        yaxis=dict(
+            title="Units Sold / Forecasted",
+            title_font=dict(color="#78666A", size=12),
+            tickfont=dict(color="#78666A"),
+            gridcolor="#E7D8CE",
+            showgrid=True,
+            zeroline=False
+        ),
         hovermode="x unified",
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        hoverlabel=dict(
+            bgcolor="#FFFCF7",
+            bordercolor="#E7D8CE",
+            font=dict(color="#332426")
+        ),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1,
+            font=dict(color="#332426")
+        ),
         margin=dict(l=20, r=20, t=50, b=20),
         height=450
     )
@@ -566,10 +1118,19 @@ with tab1:
                 y="Feature",
                 orientation="h",
                 color="Importance",
-                color_continuous_scale="Blues",
+                color_continuous_scale=[[0, "#F4E2E3"], [1, "#873B46"]],
                 title="RandomForestRegressor Feature Contributions"
             )
-            fig_fi.update_layout(height=280, margin=dict(l=10, r=10, t=30, b=10))
+            fig_fi.update_layout(
+                paper_bgcolor="rgba(0,0,0,0)",
+                plot_bgcolor="#FFFCF7",
+                font=dict(color="#332426"),
+                xaxis=dict(gridcolor="#E7D8CE", tickfont=dict(color="#78666A")),
+                yaxis=dict(gridcolor="#E7D8CE", tickfont=dict(color="#78666A")),
+                height=280,
+                margin=dict(l=10, r=10, t=30, b=10)
+            )
+            fig_fi.update_coloraxes(showscale=False)
             st.plotly_chart(fig_fi, use_container_width=True)
         else:
             st.write("Feature importances unavailable (fallback method active).")
@@ -598,7 +1159,7 @@ with tab2:
         
         st.markdown("---")
         
-        # Holdout Actual vs Predicted Chart
+        # Holdout Actual vs Predicted Chart (Cream + Burgundy Palette)
         eval_df = pd.DataFrame({
             "Date": eval_result["test_dates"],
             "Actual Sales": eval_result["test_actuals"],
@@ -607,15 +1168,36 @@ with tab2:
         })
         
         fig_eval = go.Figure()
-        fig_eval.add_trace(go.Scatter(x=eval_df["Date"], y=eval_df["Actual Sales"], mode="lines+markers", name="Actual Holdout Sales", line=dict(color="#111827", width=2.5)))
-        fig_eval.add_trace(go.Scatter(x=eval_df["Date"], y=eval_df["Random Forest Prediction"], mode="lines+markers", name="Random Forest Holdout Pred", line=dict(color="#2563EB", width=2, dash="dash")))
-        fig_eval.add_trace(go.Scatter(x=eval_df["Date"], y=eval_df["7-Day Moving Avg Baseline"], mode="lines+markers", name="Moving Average Baseline", line=dict(color="#9CA3AF", width=1.5, dash="dot")))
+        fig_eval.add_trace(go.Scatter(x=eval_df["Date"], y=eval_df["Actual Sales"], mode="lines+markers", name="Actual Holdout Sales", line=dict(color="#332426", width=2.5), marker=dict(color="#332426")))
+        fig_eval.add_trace(go.Scatter(x=eval_df["Date"], y=eval_df["Random Forest Prediction"], mode="lines+markers", name="Random Forest Holdout Pred", line=dict(color="#873B46", width=2, dash="dash"), marker=dict(color="#873B46")))
+        fig_eval.add_trace(go.Scatter(x=eval_df["Date"], y=eval_df["7-Day Moving Avg Baseline"], mode="lines+markers", name="Moving Average Baseline", line=dict(color="#C58B91", width=1.5, dash="dot"), marker=dict(color="#C58B91")))
         
         fig_eval.update_layout(
-            title=f"Holdout Period ({eval_result['evaluation_period'][0]} to {eval_result['evaluation_period'][1]}): Actuals vs Predictions",
-            xaxis_title="Holdout Date",
-            yaxis_title="Units",
+            title=dict(
+                text=f"<b>Holdout Period ({eval_result['evaluation_period'][0]} to {eval_result['evaluation_period'][1]}): Actuals vs Predictions</b>",
+                font=dict(color="#332426", size=14)
+            ),
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="#FFFCF7",
+            xaxis=dict(
+                title="Holdout Date",
+                gridcolor="#E7D8CE",
+                tickfont=dict(color="#78666A"),
+                title_font=dict(color="#78666A")
+            ),
+            yaxis=dict(
+                title="Units",
+                gridcolor="#E7D8CE",
+                tickfont=dict(color="#78666A"),
+                title_font=dict(color="#78666A")
+            ),
             hovermode="x unified",
+            hoverlabel=dict(
+                bgcolor="#FFFCF7",
+                bordercolor="#E7D8CE",
+                font=dict(color="#332426")
+            ),
+            legend=dict(font=dict(color="#332426")),
             height=380
         )
         st.plotly_chart(fig_eval, use_container_width=True)
@@ -734,17 +1316,39 @@ with tab4:
         hide_index=True
     )
     
-    # Cross-product demand comparison chart
+    # Cross-product demand comparison chart (Cream + Burgundy Palette)
     st.markdown("#### 📊 Product Demand Comparison")
     fig_prod_comp = px.bar(
         cat_df,
         x="product_name",
         y="7d_forecast",
         color="risk",
-        color_discrete_map={"High": "#EF4444", "Medium": "#F59E0B", "Low": "#10B981"},
+        color_discrete_map={
+            "High": "#873B46",    # Primary burgundy
+            "Medium": "#C58B91",  # Soft accent
+            "Low": "#78666A"      # Secondary text / muted wine
+        },
         title="7-Day Forecasted Demand by Product & Risk Category"
     )
-    fig_prod_comp.update_layout(height=350, xaxis_title="Product", yaxis_title="Forecasted Units")
+    fig_prod_comp.update_layout(
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="#FFFCF7",
+        font=dict(color="#332426"),
+        xaxis=dict(
+            title="Product",
+            gridcolor="#E7D8CE",
+            tickfont=dict(color="#78666A"),
+            title_font=dict(color="#78666A")
+        ),
+        yaxis=dict(
+            title="Forecasted Units",
+            gridcolor="#E7D8CE",
+            tickfont=dict(color="#78666A"),
+            title_font=dict(color="#78666A")
+        ),
+        legend=dict(font=dict(color="#332426")),
+        height=350
+    )
     st.plotly_chart(fig_prod_comp, use_container_width=True)
 
 
@@ -807,25 +1411,32 @@ with tab5:
         st.info("No purchase orders found matching the filter.")
     else:
         for po in saved_pos:
+            is_draft = "Draft" in po["status"]
+            is_app = po["status"] == "Approved"
+            badge_bg = "#F4E2E3" if is_draft else ("#EAF5EE" if is_app else "#F9EBEA")
+            badge_color = "#873B46" if is_draft else ("#276749" if is_app else "#A93226")
+            badge_border = "#C58B91" if is_draft else ("#C2E2CC" if is_app else "#E6B0AA")
+
             with st.container():
                 st.markdown(f"""
-                <div style="border: 1px solid #E5E7EB; border-radius: 8px; padding: 1rem; margin-bottom: 0.8rem; background: #FFFFFF;">
+                <div style="border: 1px solid #E7D8CE; border-radius: 8px; padding: 1.1rem; margin-bottom: 0.8rem; background: #FFFCF7; box-shadow: 0 2px 8px rgba(135, 59, 70, 0.04);">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: 700; font-size: 1.1rem; color: #1E3A8A;">{po['po_id']}</span>
-                        <span style="font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 6px; 
-                            background: {'#FEF3C7' if 'Draft' in po['status'] else ('#D1FAE5' if po['status'] == 'Approved' else '#FEE2E2')};
-                            color: {'#92400E' if 'Draft' in po['status'] else ('#065F46' if po['status'] == 'Approved' else '#991B1B')};">
+                        <span style="font-weight: 700; font-size: 1.1rem; color: #873B46; font-family: monospace;">{po['po_id']}</span>
+                        <span style="font-weight: 600; padding: 0.25rem 0.65rem; border-radius: 6px; 
+                            background: {badge_bg};
+                            color: {badge_color};
+                            border: 1px solid {badge_border}; font-size: 0.8rem;">
                             {po['status']}
                         </span>
                     </div>
-                    <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #374151;">
+                    <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #332426;">
                         <strong>Product:</strong> {po['product_name']} ({po['product_id']}) | 
                         <strong>Supplier:</strong> {po['supplier_name']} | 
-                        <strong>Quantity:</strong> {po['quantity']} units | 
-                        <strong>Total:</strong> ${po['estimated_total_cost']:.2f} | 
+                        <strong>Quantity:</strong> <span style="color:#873B46; font-weight:700;">{po['quantity']} units</span> | 
+                        <strong>Total:</strong> <span style="color:#873B46; font-weight:700;">${po['estimated_total_cost']:.2f}</span> | 
                         <strong>Required By:</strong> {po['required_by_date']}
                     </div>
-                    <div style="margin-top: 0.3rem; font-size: 0.85rem; color: #6B7280;">
+                    <div style="margin-top: 0.35rem; font-size: 0.82rem; color: #78666A;">
                         <strong>Reason:</strong> {po['reason']} | 
                         <strong>Model:</strong> {po['forecast_model_info']} | 
                         <strong>Created:</strong> {po['created_at'][:19]}
